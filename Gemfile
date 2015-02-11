@@ -12,6 +12,7 @@ gem 'nokogiri'
 gem 'active_record_migrations'
 gem 'pg'
 gem 'racksh'
+gem 'awesome_print'
 
 group :development do
   gem 'rake'
