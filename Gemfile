@@ -9,6 +9,7 @@ gem 'rack-cors'
 gem 'grape-swagger'
 gem 'mime-types'
 gem 'nokogiri'
+gem 'active_record_migrations'
 gem 'pg'
 
 group :development do
