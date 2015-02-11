@@ -11,6 +11,7 @@ gem 'mime-types'
 gem 'nokogiri'
 gem 'active_record_migrations'
 gem 'pg'
+gem 'racksh'
 
 group :development do
   gem 'rake'
