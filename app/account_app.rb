@@ -1,4 +1,4 @@
-module Cyberbrains
+module Cyberbrain
   class App
     def initialize
       @filenames = ['', '.html', 'index.html', '/index.html']
@@ -18,13 +18,13 @@ module Cyberbrains
           end
         end
 
-        run Cyberbrains::App.new
+        run Cyberbrain::App.new
       end.to_app
     end
 
     def call(env)
       # api
-      response = Cyberbrains::API.call(env)
+      response = Cyberbrain::API.call(env)
 
       # Check if the App wants us to pass the response along to others
       if response[1]['X-Cascade'] == 'pass'

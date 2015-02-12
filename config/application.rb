@@ -10,11 +10,12 @@ Bundler.require :default, ENV['RACK_ENV']
 RACK_ENV = ENV['RACK_ENV'] || 'development' unless defined? RACK_ENV
 
 # Load db config and establish connection
-ActiveRecord::Base.establish_connection YAML.load(File.read(File.join(File.dirname(__FILE__), '..', 'db', 'config.yml'))).with_indifferent_access[RACK_ENV]
+database_file = File.read(File.join(File.dirname(__FILE__), '..', 'db', 'database.yml'))
+ActiveRecord::Base.establish_connection YAML.load(database_file).with_indifferent_access[RACK_ENV]
 
 # Setup logger for activerecord
-ActiveRecord::Base.logger = Logger.new(File.open(File.join(File.dirname(__FILE__), '..', 'log', "#{RACK_ENV}.log"), 'a'))
-
+log_file = File.open(File.join(File.dirname(__FILE__), '..', 'log', "#{RACK_ENV}.log"), 'a')
+ActiveRecord::Base.logger = Logger.new(log_file)
 
 Dir[File.expand_path('../../app/models/*.rb', __FILE__)].each do |f|
   require f
