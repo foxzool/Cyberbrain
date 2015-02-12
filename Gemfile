@@ -13,6 +13,7 @@ gem 'active_record_migrations'
 gem 'pg'
 gem 'racksh'
 gem 'awesome_print'
+gem 'bcrypt'
 
 group :development do
   gem 'rake'

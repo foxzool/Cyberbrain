@@ -8,4 +8,4 @@ end
 
 NewRelic::Agent.manual_start
 
-run AccountCenter::App.instance
+run Cyberbrains::App.instance

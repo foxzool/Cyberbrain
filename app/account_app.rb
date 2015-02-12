@@ -1,4 +1,4 @@
-module AccountCenter
+module Cyberbrains
   class App
     def initialize
       @filenames = ['', '.html', 'index.html', '/index.html']
@@ -18,13 +18,13 @@ module AccountCenter
           end
         end
 
-        run AccountCenter::App.new
+        run Cyberbrains::App.new
       end.to_app
     end
 
     def call(env)
       # api
-      response = AccountCenter::API.call(env)
+      response = Cyberbrains::API.call(env)
 
       # Check if the App wants us to pass the response along to others
       if response[1]['X-Cascade'] == 'pass'

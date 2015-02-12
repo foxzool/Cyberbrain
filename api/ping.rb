@@ -1,4 +1,4 @@
-module AccountCenter
+module API
   class Ping < Grape::API
     format :json
     get '/ping' do
