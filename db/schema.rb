@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(version: 20150211040841) do
   enable_extension "uuid-ossp"
 
   create_table "users", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.string   "name"
-    t.string   "password_digest"
+    t.string   "name",            null: false
+    t.string   "password_digest", null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end

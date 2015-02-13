@@ -20,6 +20,7 @@ group :development do
   gem 'guard'
   gem 'guard-bundler'
   gem 'guard-rack'
+  gem 'guard-rspec'
   gem 'rubocop'
 end
 
@@ -28,4 +29,8 @@ group :test do
   gem 'rack-test'
   gem 'capybara'
   gem 'selenium-webdriver'
+  gem 'factory_girl'
+  gem 'database_cleaner'
+  gem 'faker'
+  gem 'fuubar'
 end

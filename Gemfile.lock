@@ -55,13 +55,21 @@ GEM
     coderay (1.1.0)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
+    database_cleaner (1.4.0)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.2.5)
     equalizer (0.0.9)
     erubis (2.7.0)
+    factory_girl (4.5.0)
+      activesupport (>= 3.0.0)
+    faker (1.4.3)
+      i18n (~> 0.5)
     ffi (1.9.6)
     formatador (0.2.5)
+    fuubar (2.0.0)
+      rspec (~> 3.0)
+      ruby-progressbar (~> 1.4)
     grape (0.10.1)
       activesupport
       builder
@@ -98,6 +106,10 @@ GEM
       libnotify
       rb-inotify
       spoon
+    guard-rspec (4.5.0)
+      guard (~> 2.1)
+      guard-compat (~> 1.1)
+      rspec (>= 2.99.0, < 4.0)
     hashie (3.4.0)
     hitimes (1.2.2)
     i18n (0.7.0)
@@ -218,11 +230,16 @@ DEPENDENCIES
   awesome_print
   bcrypt
   capybara
+  database_cleaner
+  factory_girl
+  faker
+  fuubar
   grape
   grape-swagger
   guard
   guard-bundler
   guard-rack
+  guard-rspec
   json
   mime-types
   newrelic-grape
