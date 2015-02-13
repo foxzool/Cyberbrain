@@ -8,9 +8,6 @@ gem 'json'
 gem 'newrelic_rpm'
 gem 'newrelic-grape'
 gem 'rack-cors'
-gem 'grape-swagger'
-gem 'mime-types'
-gem 'nokogiri'
 gem 'active_record_migrations'
 gem 'pg'
 gem 'racksh'
@@ -29,6 +26,7 @@ end
 group :test do
   gem 'rspec'
   gem 'rack-test'
+  gem 'shoulda-matchers', require: false
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'factory_girl'

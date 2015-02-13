@@ -1,5 +1,3 @@
-require 'roar/json/json_api'
-
 module Cyberbrain
   module Api
     module Presenters

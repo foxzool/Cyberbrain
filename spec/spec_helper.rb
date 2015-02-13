@@ -10,6 +10,8 @@ Dir[File.expand_path('../../spec/support/**/*.rb', __FILE__)].each do |f|
   require f
 end
 
+require 'shoulda/matchers'
+
 RSpec.configure do |config|
   config.mock_with :rspec
   config.expect_with :rspec

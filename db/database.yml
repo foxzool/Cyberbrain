@@ -5,12 +5,12 @@ default: &default
 
 development:
   <<: *default
-  database: account_center_development
+  database: cyberbrain_development
 
 test:
   <<: *default
-  database: account_center_test
+  database: cyberbrain_test
 
 production:
   <<: *default
-  database: gis_account
+  database: gis_cyberbrain

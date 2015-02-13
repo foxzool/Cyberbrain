@@ -9,6 +9,7 @@ Bundler.require :default, ENV['RACK_ENV']
 require 'roar/representer'
 require 'roar/json'
 require 'roar/json/hal'
+require 'roar/json/json_api'
 
 require 'active_record'
 
