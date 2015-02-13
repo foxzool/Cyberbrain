@@ -24,7 +24,7 @@ module Cyberbrain
 
     def call(env)
       # api
-      response = Cyberbrain::API.call(env)
+      response = Cyberbrain::Api::RootEndpoint.call(env)
 
       # Check if the App wants us to pass the response along to others
       if response[1]['X-Cascade'] == 'pass'

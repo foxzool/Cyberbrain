@@ -2,6 +2,8 @@ source 'http://rubygems.org'
 
 gem 'rack'
 gem 'grape'
+gem 'roar'
+gem 'grape-roar'
 gem 'json'
 gem 'newrelic_rpm'
 gem 'newrelic-grape'
