@@ -21,6 +21,7 @@ group :development do
   gem 'guard-rack'
   gem 'guard-rspec'
   gem 'rubocop'
+  gem 'terminal-notifier-guard'
 end
 
 group :test do
