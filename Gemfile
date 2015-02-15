@@ -33,4 +33,5 @@ group :test do
   gem 'database_cleaner'
   gem 'faker'
   gem 'fuubar'
+  gem 'simplecov', :require => false
 end
