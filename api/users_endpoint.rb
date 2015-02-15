@@ -4,8 +4,10 @@ module Cyberbrain
       helpers ShareHelpers
 
       resource :users do
+        desc 'return user info'
         get '/:id' do
-          User.find(params[:id])
+          user = User.find(params[:id])
+          present user, with: Cyberbrain::Api::Presenters::UserPresenter
         end
 
         desc 'user registration'
