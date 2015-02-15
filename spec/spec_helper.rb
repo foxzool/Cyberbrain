@@ -1,15 +1,6 @@
 require 'rubygems'
 require 'simplecov'
 
-SimpleCov.start do
-  add_group 'api', 'api'
-  add_group 'models', 'app/models'
-
-  add_filter 'spec'
-  add_filter 'config'
-  add_filter 'app/cyberbrain_app'
-end
-
 ENV['RACK_ENV'] ||= 'test'
 
 require 'rack/test'

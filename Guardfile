@@ -67,6 +67,9 @@ guard :rspec, cmd: "bundle exec rspec --color --format Fuubar" do
   # model files
   watch(%r{^app/models/(.+)\.rb$}) { |m| "spec/models/#{m[1]}_spec.rb" }
 
+  # policy files
+  watch(%r{^app/policies/(.+)\.rb$}) { |m| "spec/policies/#{m[1]}_spec.rb" }
+
   # Ruby files
   ruby = dsl.ruby
   dsl.watch_spec_files_for(ruby.lib_files)

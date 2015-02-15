@@ -22,6 +22,14 @@ module Cyberbrain
           user = User.create!(permitted_params(params)[:user])
           present user, with: Cyberbrain::Api::Presenters::UserPresenter
         end
+
+        desc 'destroy user'
+        delete '/:id' do
+          user = User.find(params[:id])
+          user.destroy!
+
+          { ok: true }
+        end
       end
     end
   end

@@ -7,10 +7,10 @@ describe Cyberbrain::Api::UsersEndpoint do
     Cyberbrain::Api::RootEndpoint
   end
 
+  let(:user) { FactoryGirl.create :user }
+
   describe 'GET /api/users/{id}' do
     it 'return user info' do
-      user = create :user
-
       get '/api/users/' + user.id
 
       expect(last_response.status).to eq(200)
@@ -25,6 +25,14 @@ describe Cyberbrain::Api::UsersEndpoint do
                                  password_confirmation: password }
 
       expect(last_response.status).to eq 201
+    end
+  end
+
+  describe 'DELETE /api/users/{id}' do
+    it 'destroy specify user' do
+      delete '/api/users/' + user.id
+
+      expect(last_response.status).to eq 200
     end
   end
 end

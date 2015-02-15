@@ -21,7 +21,7 @@ ActiveRecord::Base.establish_connection YAML.load(database_file).with_indifferen
 log_file = File.open(File.join(File.dirname(__FILE__), '..', 'log', "#{ENV['RACK_ENV']}.log"), 'a')
 ActiveRecord::Base.logger = Logger.new(log_file)
 
-%w(api/presenters api app/models).each do |path|
+%w(api/presenters api app/models app/policies).each do |path|
   Dir[File.expand_path("../../#{path}/*.rb", __FILE__)].each do |f|
     require f
   end

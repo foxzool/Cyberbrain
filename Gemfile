@@ -13,6 +13,7 @@ gem 'pg'
 gem 'racksh'
 gem 'awesome_print'
 gem 'bcrypt'
+gem 'pundit'
 
 group :development do
   gem 'rake'
@@ -34,5 +35,5 @@ group :test do
   gem 'database_cleaner'
   gem 'faker'
   gem 'fuubar'
-  gem 'simplecov', :require => false
+  gem 'simplecov', require: false
 end
