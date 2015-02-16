@@ -36,5 +36,5 @@ group :test do
   gem 'faker'
   gem 'fuubar'
   gem 'simplecov', require: false
-  gem "codeclimate-test-reporter", require: false
+  gem 'codeclimate-test-reporter', require: false
 end

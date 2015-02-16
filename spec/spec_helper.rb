@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'simplecov'
-require "codeclimate-test-reporter"
+require 'codeclimate-test-reporter'
 CodeClimate::TestReporter.start
 
 ENV['RACK_ENV'] ||= 'test'
