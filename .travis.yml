@@ -14,7 +14,10 @@ matrix:
     - rvm: ruby-head
     - rvm: jruby-19mode
     - rvm: rbx-2
-before_install: gem update --remote bundler
+before_install:
+  - rake db:create:all
+  - rake db:seed
+  - gem update --remote bundler
 install:
   - bundle install --retry=3
 script:
