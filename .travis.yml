@@ -15,12 +15,11 @@ matrix:
     - rvm: jruby-19mode
     - rvm: rbx-2
 before_install:
+  - rake db:create:all
+  - rake db:seed
   - gem update --remote bundler
 install:
   - bundle install --retry=3
-  - rake db:create
-  - rake db:migrate
-  - rake db:seed
 script:
   - bundle exec rspec
   - bundle exec rubocop
