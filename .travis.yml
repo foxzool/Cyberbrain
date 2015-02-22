@@ -19,5 +19,5 @@ install:
   - rake db:migrate
   - rake db:seed
 script:
-  - bundle exec rspec
+  - CODECLIMATE_REPO_TOKEN=83ab34501dba9b56326eb9fbae7f21bd89478e08adf154490fefdc9755196bd6 bundle exec rspec
   - bundle exec rubocop
