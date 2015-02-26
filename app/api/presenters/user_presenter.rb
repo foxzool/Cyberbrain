@@ -1,5 +1,5 @@
 module Cyberbrain
-  module Api
+  module API
     module Presenters
       module UserPresenter
         include Roar::JSON::JSONAPI
@@ -8,7 +8,7 @@ module Cyberbrain
         type :users
 
         property :id
-        property :name
+        property :username
       end
     end
   end

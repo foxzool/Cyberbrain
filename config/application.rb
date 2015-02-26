@@ -1,5 +1,5 @@
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'api'))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'app'))
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'app', 'api'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 
 require 'boot'
@@ -21,11 +21,10 @@ ActiveRecord::Base.establish_connection YAML.load(database_file).with_indifferen
 log_file = File.open(File.join(File.dirname(__FILE__), '..', 'log', "#{ENV['RACK_ENV']}.log"), 'a')
 ActiveRecord::Base.logger = Logger.new(log_file)
 
-%w(api/presenters api app/models app/policies).each do |path|
-  Dir[File.expand_path("../../#{path}/*.rb", __FILE__)].each do |f|
+%w(models/concerns models policies helpers).each do |path|
+  Dir[File.expand_path("../../app/#{path}/*.rb", __FILE__)].each do |f|
     require f
   end
 end
 
-require 'root_endpoint'
-require 'cyberbrain_app'
+require File.expand_path('../../app/cyberbrain_app.rb', __FILE__)

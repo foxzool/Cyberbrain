@@ -1,5 +1,6 @@
 source 'http://rubygems.org'
 
+gem 'puma'
 gem 'rack'
 gem 'grape'
 gem 'roar'
@@ -8,6 +9,7 @@ gem 'json'
 gem 'newrelic_rpm'
 gem 'newrelic-grape'
 gem 'rack-cors'
+gem 'rack-oauth2'
 gem 'active_record_migrations'
 gem 'pg'
 gem 'racksh'
@@ -28,6 +30,7 @@ end
 group :test do
   gem 'rspec'
   gem 'rack-test'
+  gem 'json_spec'
   gem 'shoulda-matchers', require: false
   gem 'capybara'
   gem 'selenium-webdriver'

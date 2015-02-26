@@ -62,7 +62,7 @@ guard :rspec, cmd: "bundle exec rspec --color --format Fuubar" do
   watch(rspec.spec_files)
 
   # API files
-  watch(%r{^api/(.+)\.rb$}) { |m| "spec/api/#{m[1]}_spec.rb" }
+  watch(%r{^app/api/resources/(.+)\.rb$}) { |m| "spec/api/#{m[1]}_spec.rb" }
 
   # model files
   watch(%r{^app/models/(.+)\.rb$}) { |m| "spec/models/#{m[1]}_spec.rb" }
