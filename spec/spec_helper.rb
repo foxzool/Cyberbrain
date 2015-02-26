@@ -1,8 +1,18 @@
 require 'rubygems'
-require 'simplecov'
 if ENV['CODECLIMATE_REPO_TOKEN']
   require 'codeclimate-test-reporter'
   CodeClimate::TestReporter.start
+else
+  require 'simplecov'
+  SimpleCov.start do
+    add_group 'api', 'api'
+    add_group 'models', 'app/models'
+    add_group 'policies', 'app/policies'
+
+    add_filter 'spec'
+    add_filter 'config'
+    add_filter 'app/cyberbrain_app'
+  end
 end
 
 ENV['RACK_ENV'] ||= 'test'
