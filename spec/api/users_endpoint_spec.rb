@@ -8,7 +8,7 @@ describe Cyberbrain::API::UsersEndpoint do
   end
 
   let(:user) { FactoryGirl.create :user }
-  let(:access_token) { OauthAccessToken.create(user: user) }
+  let(:access_token) { Cyberbrain::AccessToken.create(user: user) }
 
   describe 'GET /api/v1/users/{id}' do
     it 'return user info' do

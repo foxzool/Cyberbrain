@@ -8,6 +8,7 @@ describe Cyberbrain::API::OAuth2Endpoint do
   end
 
   let(:user) { FactoryGirl.create :user, password: '123' }
+  let(:access_token) { Cyberbrain::AccessToken.create(user: user) }
 
   describe 'POST /api/v1/oauth2/token' do
     it 'get access token' do
@@ -18,10 +19,17 @@ describe Cyberbrain::API::OAuth2Endpoint do
            client_id:  1
       expect(last_response.status).to eq(200)
     end
+
+    it 'refresh old token' do
+      post '/api/v1/oauth2/token',
+           grant_type: :refresh_token,
+           token:      access_token.refresh_token,
+           client_id:  1
+    end
   end
 
   describe 'POST /api/v1/oauth2/revoke' do
-    let(:access_token) { OauthAccessToken.create(user: user) }
+
 
     it 'revoke access token' do
       post '/api/v1/oauth2/revoke',

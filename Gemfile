@@ -38,6 +38,7 @@ group :test do
   gem 'database_cleaner'
   gem 'faker'
   gem 'fuubar'
+  gem 'timecop'
   gem 'simplecov', require: false
   gem 'codeclimate-test-reporter', require: false
 end

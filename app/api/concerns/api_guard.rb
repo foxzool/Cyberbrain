@@ -46,21 +46,21 @@ module APIGuard
       if token_string.blank?
         fail MissingTokenError
 
-      elsif (access_token = OauthAccessToken.by_token(token_string)).nil?
+      elsif (access_token = Cyberbrain::AccessToken.by_token(token_string)).nil?
         fail TokenNotFoundError
 
       else
         case access_token.verify(scopes)
-        when OauthAccessToken::INSUFFICIENT_SCOPE
+        when Cyberbrain::AccessToken::INSUFFICIENT_SCOPE
           fail InsufficientScopeError, scopes
 
-        when OauthAccessToken::EXPIRED
+        when Cyberbrain::AccessToken::EXPIRED
           fail ExpiredError
 
-        when OauthAccessToken::REVOKED
+        when Cyberbrain::AccessToken::REVOKED
           fail RevokedError
 
-        when OauthAccessToken::VALID
+        when Cyberbrain::AccessToken::VALID
           @current_user = User.find(access_token.user_id)
         else
           fail TokenNotFoundError

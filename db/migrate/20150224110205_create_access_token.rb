@@ -5,6 +5,7 @@ class CreateAccessToken < ActiveRecord::Migration
       t.string :token, null: false
       t.string :refresh_token
       t.integer :expires_in
+      t.string :scopes
       t.datetime :revoked_at
       t.datetime :created_at, null: false
     end
