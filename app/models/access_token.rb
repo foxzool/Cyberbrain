@@ -13,8 +13,6 @@ module Cyberbrain
     REVOKED            = :revoked
     INSUFFICIENT_SCOPE = :insufficient_scope
 
-    belongs_to :user
-
     before_validation :generate_token, on: :create
 
     scope :by_token, ->(token) { where(token: token).limit(1).to_a.first }

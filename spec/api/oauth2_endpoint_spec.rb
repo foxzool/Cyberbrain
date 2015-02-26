@@ -8,7 +8,7 @@ describe Cyberbrain::API::OAuth2Endpoint do
   end
 
   let(:user) { FactoryGirl.create :user, password: '123' }
-  let(:access_token) { Cyberbrain::AccessToken.create(user: user) }
+  let(:access_token) { Cyberbrain::AccessToken.create(user_id: user.id) }
 
   describe 'POST /api/v1/oauth2/token' do
     it 'get access token' do

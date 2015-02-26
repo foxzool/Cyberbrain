@@ -44,7 +44,7 @@ class GenerateOauthToken
 
   class Password
     def self.validate(req)
-      user = User.find_by(username: req.username)
+      user = Cyberbrain::User.find_by(username: req.username)
       req.invalid_request! unless user && user.authenticate(req.password)
       Cyberbrain::AccessToken.create(user_id: user.id).to_bearer_token(true)
     end
