@@ -21,7 +21,7 @@ describe Cyberbrain::AccessToken do
     end
 
     it 'return INSUFFICIENT_SCOPE when scopes not right' do
-
+      expect(subject.verify(['bad'])).to eq Cyberbrain::AccessToken::INSUFFICIENT_SCOPE
     end
   end
 end

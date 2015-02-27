@@ -3,9 +3,14 @@ module Cyberbrain
 
     self.table_name = 'oauth_access_tokens'
 
+    belongs_to :application,
+               class_name: 'Cyberbrain::Application',
+               inverse_of: :access_tokens
+
     include Expirable
     include Revocable
     include Accessible
+    include Models::Scopes
 
     # Results:
     VALID              = :valid
@@ -21,7 +26,8 @@ module Cyberbrain
     def to_bearer_token(with_refresh_token = false)
       bearer_token = Rack::OAuth2::AccessToken::Bearer.new(
         access_token: token,
-        expires_in:   expires_in
+        expires_in:   expires_in,
+        scope:        scopes_string
       )
 
       if with_refresh_token

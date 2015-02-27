@@ -1,3 +1,4 @@
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'app'))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'app', 'api'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
@@ -6,6 +7,7 @@ require 'boot'
 
 Bundler.require :default, ENV['RACK_ENV']
 
+require 'cyberbrain'
 require 'roar/representer'
 require 'roar/json'
 require 'roar/json/hal'
@@ -18,10 +20,10 @@ database_file = File.read(File.join(File.dirname(__FILE__), '..', 'db', 'databas
 ActiveRecord::Base.establish_connection YAML.load(database_file).with_indifferent_access[ENV['RACK_ENV']]
 
 # Setup logger for activerecord
-log_file = File.open(File.join(File.dirname(__FILE__), '..', 'log', "#{ENV['RACK_ENV']}.log"), 'a')
+log_file                  = File.open(File.join(File.dirname(__FILE__), '..', 'log', "#{ENV['RACK_ENV']}.log"), 'a')
 ActiveRecord::Base.logger = Logger.new(log_file)
 
-%w(models/concerns models policies helpers).each do |path|
+%w(helpers validators models/concerns models policies).each do |path|
   Dir[File.expand_path("../../app/#{path}/*.rb", __FILE__)].each do |f|
     require f
   end

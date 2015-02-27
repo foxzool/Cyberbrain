@@ -1,7 +1,7 @@
 module Cyberbrain
   module API
-    require 'concerns/api_guard'
-    require 'concerns/strong_params_helpers'
+    require 'helpers/api_guard'
+    require 'helpers/strong_params_helpers'
     require 'resources/oauth2_endpoint'
     require 'resources/users_endpoint'
     require 'presenters/user_presenter'

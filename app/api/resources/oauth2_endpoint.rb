@@ -43,9 +43,9 @@ module Cyberbrain
 
         post :revoke do
           access_token = if params[:token_type_hint] == 'access_token'
-                           AccessToken.by_token(params[:token])
+                           Cyberbrain::AccessToken.by_token(params[:token])
                          else
-                           AccessToken.by_refresh_token(params[:token])
+                           Cyberbrain::AccessToken.by_refresh_token(params[:token])
                          end
           access_token.revoke if access_token.accessible?
           {}

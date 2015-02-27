@@ -29,8 +29,6 @@ describe Cyberbrain::API::OAuth2Endpoint do
   end
 
   describe 'POST /api/v1/oauth2/revoke' do
-
-
     it 'revoke access token' do
       post '/api/v1/oauth2/revoke',
            token_type_hint: 'access_token',
