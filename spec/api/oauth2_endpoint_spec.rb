@@ -7,24 +7,32 @@ describe Cyberbrain::API::OAuth2Endpoint do
     Cyberbrain::API::RootEndpoint
   end
 
+  let(:application) { FactoryGirl.create :application }
   let(:user) { FactoryGirl.create :user, password: '123' }
-  let(:access_token) { Cyberbrain::AccessToken.create(resource_owner_id: user.id) }
+  let(:access_token) { FactoryGirl.create :access_token,
+                                          application: application,
+                                          resource_owner_id: user.id,
+                                          use_refresh_token: true }
 
   describe 'POST /api/v1/oauth2/token' do
     it 'get access token' do
       post '/api/v1/oauth2/token',
            grant_type: :password,
-           username:   user.username,
-           password:   '123',
-           client_id:  1
+           username: user.username,
+           password: '123',
+           client_id: application.uid,
+           client_secret: application.secret
+
       expect(last_response.status).to eq(200)
     end
 
     it 'refresh old token' do
       post '/api/v1/oauth2/token',
            grant_type: :refresh_token,
-           token:      access_token.refresh_token,
-           client_id:  1
+           refresh_token: access_token.refresh_token,
+           client_id: application.uid,
+           client_secret: application.secret
+      expect(last_response.status).to eq(200)
     end
   end
 
@@ -32,7 +40,9 @@ describe Cyberbrain::API::OAuth2Endpoint do
     it 'revoke access token' do
       post '/api/v1/oauth2/revoke',
            token_type_hint: 'access_token',
-           token:           access_token.token
+           token: access_token.token,
+           client_id: application.uid,
+           client_secret: application.secret
 
       expect(last_response.status).to eq(201)
     end
@@ -40,7 +50,9 @@ describe Cyberbrain::API::OAuth2Endpoint do
     it 'revoke refresh token' do
       post '/api/v1/oauth2/revoke',
            token_type_hint: 'refresh_token',
-           token:           access_token.refresh_token
+           token: access_token.refresh_token,
+           client_id: application.uid,
+           client_secret: application.secret
 
       expect(last_response.status).to eq(201)
     end

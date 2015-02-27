@@ -11,7 +11,7 @@ module Cyberbrain
         desc 'return specify user info'
         get '/:id' do
           guard!
-          user = User.find(params[:id])
+          user = Account.find(params[:id])
           present user, with: Cyberbrain::API::Presenters::UserPresenter
         end
 
@@ -24,14 +24,14 @@ module Cyberbrain
           end
         end
         post '/' do
-          user = User.create!(permitted_params[:user])
+          user = Account.create!(permitted_params[:user])
           present user, with: Cyberbrain::API::Presenters::UserPresenter
         end
 
         desc 'destroy specify user'
         delete '/:id' do
           guard!
-          user = User.find(params[:id])
+          user = Account.find(params[:id])
           user.destroy!
 
           { ok: true }

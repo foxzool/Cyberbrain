@@ -20,7 +20,7 @@ module APIGuard
 
   # Helper Methods for Grape Endpoint
   module HelperMethods
-    # Invokes the doorkeeper guard.
+    # Invokes the Cyberbrain guard.
     #
     # If token string is blank, then it fails MissingTokenError.
     #
@@ -61,7 +61,7 @@ module APIGuard
           fail RevokedError
 
         when Cyberbrain::AccessToken::VALID
-          @current_user = Cyberbrain::User.find(access_token.resource_owner_id)
+          @current_user = Cyberbrain::Account.find(access_token.resource_owner_id)
         else
           fail TokenNotFoundError
         end
@@ -72,7 +72,7 @@ module APIGuard
   end
 
   module ClassMethods
-    # Installs the doorkeeper guard on the whole Grape API endpoint.
+    # Installs the Cyberbrain guard on the whole Grape API endpoint.
     #
     # Arguments:
     #

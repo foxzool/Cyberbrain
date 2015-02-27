@@ -1,2 +1,2 @@
 # create admin
-Cyberbrain::User.create(username: 'admin', password: 'changeme')
+Cyberbrain::Account.create(username: 'admin', password: 'changeme')

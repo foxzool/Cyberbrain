@@ -17,7 +17,6 @@ gem 'racksh'
 gem 'awesome_print'
 gem 'bcrypt'
 gem 'pundit'
-gem 'configatron'
 
 group :development do
   gem 'rake'

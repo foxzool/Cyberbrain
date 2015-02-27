@@ -1,11 +1,7 @@
 module Cyberbrain
   module API
     class OAuth2Endpoint < Grape::API
-      helpers do
-        def authorization_response(env)
-          GenerateOauthToken.for(env)
-        end
-      end
+      helpers Cyberbrain::Helpers::API
 
       resource :oauth2 do
         params do
@@ -27,8 +23,7 @@ module Cyberbrain
                    desc: 'The refresh_token.'
         end
         post :token do
-          response = authorization_response(env)
-
+          response = authenticator(env)
           # status
           status response[0]
 

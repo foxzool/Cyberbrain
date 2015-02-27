@@ -7,6 +7,12 @@ require 'boot'
 
 Bundler.require :default, ENV['RACK_ENV']
 
+require 'i18n'
+
+I18n.load_path << Dir[File.expand_path("../../config/locales/*.yml", __FILE__)]
+I18n.backend.load_translations
+I18n.enforce_available_locales = false
+
 require 'cyberbrain'
 require 'roar/representer'
 require 'roar/json'
@@ -23,7 +29,7 @@ ActiveRecord::Base.establish_connection YAML.load(database_file).with_indifferen
 log_file                  = File.open(File.join(File.dirname(__FILE__), '..', 'log', "#{ENV['RACK_ENV']}.log"), 'a')
 ActiveRecord::Base.logger = Logger.new(log_file)
 
-%w(helpers validators models/concerns models policies).each do |path|
+%w(validators models/concerns models policies).each do |path|
   Dir[File.expand_path("../../app/#{path}/*.rb", __FILE__)].each do |f|
     require f
   end

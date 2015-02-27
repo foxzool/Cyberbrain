@@ -18,6 +18,13 @@ ActiveRecord::Schema.define(version: 2) do
   enable_extension "hstore"
   enable_extension "uuid-ossp"
 
+  create_table "accounts", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.string   "username",        null: false
+    t.string   "password_digest", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
   create_table "oauth_access_grants", force: :cascade do |t|
     t.uuid     "resource_owner_id", null: false
     t.integer  "application_id",    null: false
@@ -57,12 +64,5 @@ ActiveRecord::Schema.define(version: 2) do
   end
 
   add_index "oauth_applications", ["uid"], name: "index_oauth_applications_on_uid", unique: true, using: :btree
-
-  create_table "users", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.string   "username",        null: false
-    t.string   "password_digest", null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
 
 end

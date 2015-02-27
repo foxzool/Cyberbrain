@@ -24,7 +24,7 @@ module Cyberbrain
         end
 
         def self.native_uri?(url)
-          url == Doorkeeper.configuration.native_redirect_uri
+          url == Cyberbrain.configuration.native_redirect_uri
         end
       end
     end

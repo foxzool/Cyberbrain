@@ -24,8 +24,8 @@ module Cyberbrain
 
       def headers
         { 'Cache-Control' => 'no-store',
-          'Pragma'        => 'no-cache',
-          'Content-Type'  => 'application/json; charset=utf-8' }
+          'Pragma' => 'no-cache',
+          'Content-Type' => 'application/json; charset=utf-8' }
       end
     end
   end

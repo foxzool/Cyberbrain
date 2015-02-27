@@ -1,5 +1,5 @@
 module Cyberbrain
-  class User < ActiveRecord::Base
+  class Account < ActiveRecord::Base
     has_secure_password
 
     validates :username,
