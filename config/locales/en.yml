@@ -1,4 +1,7 @@
 en:
+  faker:
+    name:
+      names: [Charlotte, Ava, Chloe, Emily]
   activerecord:
     attributes:
       cyberbrain/application:

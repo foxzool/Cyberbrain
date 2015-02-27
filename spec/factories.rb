@@ -23,7 +23,7 @@ FactoryGirl.define do
   end
 
   factory :user, class: Cyberbrain::Account do
-    username { Faker::Name.first_name }
+    username { Faker::Name.names }
     password { Faker::Internet.password }
     password_confirmation { password }
   end

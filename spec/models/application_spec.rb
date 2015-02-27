@@ -37,15 +37,15 @@ module Cyberbrain
     end
 
     it 'checks uniqueness of uid' do
-      app1     = FactoryGirl.create(:application)
-      app2     = FactoryGirl.create(:application)
+      app1 = FactoryGirl.create(:application)
+      app2 = FactoryGirl.create(:application)
       app2.uid = app1.uid
       expect(app2).not_to be_valid
     end
 
     it 'expects database to throw an error when uids are the same' do
-      app1     = FactoryGirl.create(:application)
-      app2     = FactoryGirl.create(:application)
+      app1 = FactoryGirl.create(:application)
+      app2 = FactoryGirl.create(:application)
       app2.uid = app1.uid
       expect { app2.save!(validate: false) }.to raise_error
     end
@@ -119,17 +119,17 @@ module Cyberbrain
       end
 
       it 'should fail to mass assign a new application', if: ::Rails::VERSION::MAJOR < 4 do
-        mass_assign = { name:         'Something',
+        mass_assign = { name: 'Something',
                         redirect_uri: 'http://somewhere.com/something',
-                        uid:          123,
-                        secret:       'something' }
+                        uid: 123,
+                        secret: 'something' }
         expect(Application.create(mass_assign).uid).not_to eq(123)
       end
     end
 
     describe :authenticate do
       it 'finds the application via uid/secret' do
-        app           = FactoryGirl.create :application
+        app = FactoryGirl.create :application
         authenticated = Application.by_uid_and_secret(app.uid, app.secret)
         expect(authenticated).to eq(app)
       end
