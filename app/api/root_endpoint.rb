@@ -3,8 +3,8 @@ module Cyberbrain
     require 'helpers/api_guard'
     require 'helpers/strong_params_helpers'
     require 'resources/oauth2_endpoint'
-    require 'resources/users_endpoint'
-    require 'presenters/user_presenter'
+    require 'resources/accounts_endpoint'
+    require 'presenters/account_presenter'
 
     class RootEndpoint < Grape::API
       helpers StrongParamsHelpers
@@ -19,7 +19,7 @@ module Cyberbrain
 
       formatter :json, Grape::Formatter::Roar
 
-      mount UsersEndpoint
+      mount AccountsEndpoint
       mount OAuth2Endpoint
     end
   end

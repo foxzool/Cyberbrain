@@ -22,7 +22,7 @@ FactoryGirl.define do
     redirect_uri 'https://app.com/callback'
   end
 
-  factory :user, class: Cyberbrain::Account do
+  factory :account, class: Cyberbrain::Account do
     username { Faker::Name.names }
     password { Faker::Internet.password }
     password_confirmation { password }

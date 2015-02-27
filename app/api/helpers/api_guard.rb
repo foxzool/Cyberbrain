@@ -61,7 +61,7 @@ module APIGuard
           fail RevokedError
 
         when Cyberbrain::AccessToken::VALID
-          @current_user = Cyberbrain::Account.find(access_token.resource_owner_id)
+          @current_account = Cyberbrain::Account.find(access_token.resource_owner_id)
         else
           fail TokenNotFoundError
         end

@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-describe UserPolicy do
-  let(:user) { FactoryGirl.create :user }
+describe AccountPolicy do
+  let(:account) { FactoryGirl.create :account }
 
-  subject { UserPolicy }
+  subject { AccountPolicy }
 
   permissions :destroy? do
     it 'grant access' do
-      expect(subject).to permit(user, user)
+      expect(subject).to permit(account, account)
     end
   end
 end

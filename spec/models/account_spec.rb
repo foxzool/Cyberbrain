@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Cyberbrain::Account do
-  subject { FactoryGirl.build :user }
+  subject { FactoryGirl.build :account }
 
   it { should have_secure_password }
   it { should validate_presence_of(:username) }

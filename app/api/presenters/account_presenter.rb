@@ -1,11 +1,11 @@
 module Cyberbrain
   module API
     module Presenters
-      module UserPresenter
+      module AccountPresenter
         include Roar::JSON::JSONAPI
         include Grape::Roar::Representer
 
-        type :users
+        type :accounts
 
         property :id
         property :username
