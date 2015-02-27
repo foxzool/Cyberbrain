@@ -5,6 +5,7 @@ if ENV['CODECLIMATE_REPO_TOKEN']
 else
   require 'simplecov'
   SimpleCov.start do
+    add_group 'lib', 'lib'
     add_group 'api', 'api'
     add_group 'models', 'app/models'
     add_group 'policies', 'app/policies'

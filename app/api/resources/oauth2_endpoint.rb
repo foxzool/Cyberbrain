@@ -6,9 +6,9 @@ module Cyberbrain
       resource :oauth2 do
         params do
           requires :grant_type,
-                   type:   Symbol,
+                   type: Symbol,
                    values: [:authorization_code, :refresh_token, :client_credentials, :password],
-                   desc:   'The grant type.'
+                   desc: 'The grant type.'
           optional :code,
                    type: String,
                    desc: 'The authorization code.'

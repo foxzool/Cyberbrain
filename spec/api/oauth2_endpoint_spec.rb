@@ -14,25 +14,66 @@ describe Cyberbrain::API::OAuth2Endpoint do
                                           resource_owner_id: account.id,
                                           use_refresh_token: true }
 
+  # TODO check json response
   describe 'POST /api/v1/oauth2/token' do
-    it 'get access token' do
-      post '/api/v1/oauth2/token',
-           grant_type: :password,
-           username: account.username,
-           password: '123',
-           client_id: application.uid,
-           client_secret: application.secret
+    let(:grant) { FactoryGirl.create :access_grant }
+    context 'grant_type is authorization_code' do
+      it 'return access token' do
+        post '/api/v1/oauth2/token',
+             grant_type: :authorization_code,
+             code: grant.token,
+             redirect_uri: application.redirect_uri,
+             client_id: application.uid,
+             client_secret: application.secret
 
-      expect(last_response.status).to eq(200)
+        expect(last_response.status).to eq(200)
+      end
     end
 
-    it 'refresh old token' do
-      post '/api/v1/oauth2/token',
-           grant_type: :refresh_token,
-           refresh_token: access_token.refresh_token,
-           client_id: application.uid,
-           client_secret: application.secret
-      expect(last_response.status).to eq(200)
+    context 'grant_type is client_credentials' do
+      it 'return access token' do
+        post '/api/v1/oauth2/token',
+             grant_type: :client_credentials,
+             client_id: application.uid,
+             client_secret: application.secret
+
+        expect(last_response.status).to eq(200)
+      end
+    end
+
+    context 'grant_type is password' do
+      it 'return access token' do
+        post '/api/v1/oauth2/token',
+             grant_type: :password,
+             username: account.username,
+             password: '123',
+             client_id: application.uid,
+             client_secret: application.secret
+
+        expect(last_response.status).to eq(200)
+      end
+    end
+
+    context 'grant_type is refresh_toke' do
+      it 'refresh old token' do
+        post '/api/v1/oauth2/token',
+             grant_type: :refresh_token,
+             refresh_token: access_token.refresh_token,
+             client_id: application.uid,
+             client_secret: application.secret
+        expect(last_response.status).to eq(200)
+      end
+    end
+
+    context 'grant_type is unknown' do
+      it 'raise error when grant_type not support' do
+        post '/api/v1/oauth2/token',
+             grant_type: :unknown,
+             client_id: application.uid,
+             client_secret: application.secret
+
+        expect(last_response.status).to eq(400)
+      end
     end
   end
 
