@@ -28,7 +28,7 @@ class GenerateOauthToken
       token = AccessToken.by_refresh_token(req.refresh_token)
       if token.accessible?
         token.revoke
-        Cyberbrain::AccessToken.create(user_id: token.user_id).to_bearer_token(true)
+        Cyberbrain::AccessToken.create(resource_owner_id: token.user_id).to_bearer_token(true)
       else
         req.invalid_grant!
       end
@@ -46,7 +46,7 @@ class GenerateOauthToken
     def self.validate(req)
       user = Cyberbrain::User.find_by(username: req.username)
       req.invalid_request! unless user && user.authenticate(req.password)
-      Cyberbrain::AccessToken.create(user_id: user.id).to_bearer_token(true)
+      Cyberbrain::AccessToken.create(resource_owner_id: user.id).to_bearer_token(true)
     end
   end
 end
