@@ -17,7 +17,7 @@ module Cyberbrain
         Cyberbrain::AccessToken.find_or_create_for(
           client,
           code.resource_owner_id,
-          'public write',
+          'account',
           15.minutes,
           true
         ).to_bearer_token
@@ -28,7 +28,7 @@ module Cyberbrain
         Cyberbrain::AccessToken.find_or_create_for(
           client,
           account.id,
-          'public write',
+          'account',
           15.minutes,
           true
         ).to_bearer_token
@@ -38,7 +38,7 @@ module Cyberbrain
         Cyberbrain::AccessToken.find_or_create_for(
           client,
           nil,
-          'public write',
+          'account',
           15.minutes,
           true
         ).to_bearer_token
@@ -50,7 +50,7 @@ module Cyberbrain
         Cyberbrain::AccessToken.find_or_create_for(
           client,
           refresh_token.resource_owner_id,
-          'public write',
+          'account',
           15.minutes,
           true
         ).to_bearer_token

@@ -4,7 +4,7 @@ FactoryGirl.define do
     application
     redirect_uri 'https://app.com/callback'
     expires_in 100
-    scopes 'public write'
+    scopes 'account'
   end
 
   factory :access_token, class: Cyberbrain::AccessToken do

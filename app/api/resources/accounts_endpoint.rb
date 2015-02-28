@@ -4,13 +4,12 @@ module Cyberbrain
       resource :accounts do
         desc 'return current account'
         get '/current' do
-          guard!
+          guard! scopes: ['account']
           present @current_account, with: Cyberbrain::API::Presenters::AccountPresenter
         end
 
         desc 'return specify account info'
         get '/:id' do
-          guard!
           account = Account.find(params[:id])
           present account, with: Cyberbrain::API::Presenters::AccountPresenter
         end
@@ -30,7 +29,7 @@ module Cyberbrain
 
         desc 'destroy specify account'
         delete '/:id' do
-          guard!
+          guard! scopes: ['account']
           account = Account.find(params[:id])
           account.destroy!
 

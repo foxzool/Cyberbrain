@@ -45,7 +45,6 @@ module APIGuard
 
       if token_string.blank?
         fail MissingTokenError
-
       elsif (access_token = Cyberbrain::AccessToken.by_token(token_string)).nil?
         fail TokenNotFoundError
 
@@ -68,7 +67,7 @@ module APIGuard
       end
     end
 
-    attr_reader :current_user
+    attr_reader :current_account
   end
 
   module ClassMethods

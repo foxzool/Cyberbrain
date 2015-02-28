@@ -161,15 +161,15 @@ module Cyberbrain
 
     # True if the token's scope is a superset of required scopes,
     # or the required scopes is empty.
-    def sufficent_scope?(scopes)
-      if scopes.blank?
+    def sufficent_scope?(req_scopes)
+      if req_scopes.blank?
         # if no any scopes required, the scopes of token is sufficient.
         true
       else
         # If there are scopes required, then check whether
         # the set of authorized scopes is a superset of the set of required scopes
-        required_scopes = Set.new(scopes)
-        authorized_scopes = Set.new(self.scopes)
+        required_scopes = Set.new(req_scopes)
+        authorized_scopes = Set.new(scopes)
 
         authorized_scopes >= required_scopes
       end

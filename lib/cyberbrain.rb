@@ -10,4 +10,5 @@ require 'cyberbrain/helpers/api'
 
 Cyberbrain.configure do
   orm :active_record
+  default_scopes :account
 end
