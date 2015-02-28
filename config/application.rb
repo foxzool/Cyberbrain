@@ -9,7 +9,7 @@ Bundler.require :default, ENV['RACK_ENV']
 
 require 'i18n'
 
-I18n.load_path << Dir[File.expand_path("../../config/locales/*.yml", __FILE__)]
+I18n.load_path << Dir[File.expand_path('../../config/locales/*.yml', __FILE__)]
 I18n.backend.load_translations
 I18n.enforce_available_locales = false
 

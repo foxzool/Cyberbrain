@@ -29,3 +29,7 @@ Metrics/MethodLength:
 
 Metrics/ParameterLists:
   Enabled: false
+
+TrivialAccessors:
+  Enabled: true
+  ExactNameMatch: true

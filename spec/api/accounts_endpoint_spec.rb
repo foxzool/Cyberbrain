@@ -23,8 +23,8 @@ describe Cyberbrain::API::AccountsEndpoint do
     it 'return user info' do
       password = Faker::Internet.password
       post '/api/v1/accounts.json', account: { username: Faker::Name.first_name,
-                                         password: password,
-                                         password_confirmation: password }
+                                               password: password,
+                                               password_confirmation: password }
 
       expect(last_response.status).to eq 201
       expect(JSON.parse(last_response.body)['accounts']).to include('username')

@@ -48,9 +48,7 @@ module Cyberbrain
     end
 
     describe '#same_credential?' do
-
       context 'with default parameters' do
-
         let(:resource_owner_id) { 100 }
         let(:application) { FactoryGirl.create :application }
         let(:default_attributes) do
@@ -67,7 +65,11 @@ module Cyberbrain
 
         context 'the second token has same owner and different app' do
           let(:other_application) { FactoryGirl.create :application }
-          let(:access_token2) { FactoryGirl.create :access_token, application: other_application, resource_owner_id: resource_owner_id }
+          let(:access_token2) do
+            FactoryGirl.create :access_token,
+                               application: other_application,
+                               resource_owner_id: resource_owner_id
+          end
 
           it 'fail' do
             expect(access_token1.same_credential?(access_token2)).to be_falsey
@@ -75,7 +77,6 @@ module Cyberbrain
         end
 
         context 'the second token has different owner and different app' do
-
           let(:other_application) { FactoryGirl.create :application }
           let(:access_token2) { FactoryGirl.create :access_token, application: other_application }
 
@@ -113,7 +114,7 @@ module Cyberbrain
 
       context 'a token is acceptable with the correct scopes' do
         let(:token) do
-          token          = FactoryGirl.create(:access_token)
+          token = FactoryGirl.create(:access_token)
           token[:scopes] = 'public'
           token
         end
@@ -158,27 +159,27 @@ module Cyberbrain
       let(:scopes) { Cyberbrain::OAuth::Scopes.from_string('public write') }
       let(:default_attributes) do
         {
-          application:       application,
+          application: application,
           resource_owner_id: resource_owner_id,
-          scopes:            scopes.to_s
+          scopes: scopes.to_s
         }
       end
 
       it 'returns only one token' do
-        token      = FactoryGirl.create :access_token, default_attributes
+        token = FactoryGirl.create :access_token, default_attributes
         last_token = AccessToken.matching_token_for(application, resource_owner_id, scopes)
         expect(last_token).to eq(token)
       end
 
       it 'accepts resource owner as object' do
         resource_owner = double(to_key: true, id: resource_owner_id)
-        token          = FactoryGirl.create :access_token, default_attributes
-        last_token     = AccessToken.matching_token_for(application, resource_owner, scopes)
+        token = FactoryGirl.create :access_token, default_attributes
+        last_token = AccessToken.matching_token_for(application, resource_owner, scopes)
         expect(last_token).to eq(token)
       end
 
       it 'accepts nil as resource owner' do
-        token      = FactoryGirl.create :access_token, default_attributes.merge(resource_owner_id: nil)
+        token = FactoryGirl.create :access_token, default_attributes.merge(resource_owner_id: nil)
         last_token = AccessToken.matching_token_for(application, nil, scopes)
         expect(last_token).to eq(token)
       end
@@ -208,29 +209,27 @@ module Cyberbrain
       end
 
       it 'matches application scopes' do
-        application = FactoryGirl.create :application, scopes: "private read"
-        FactoryGirl.create :access_token, default_attributes.merge(
-                                          application: application
-                                        )
+        application = FactoryGirl.create :application, scopes: 'private read'
+        FactoryGirl.create :access_token, default_attributes.merge(application: application)
         last_token = AccessToken.matching_token_for(application, resource_owner_id, scopes)
         expect(last_token).to be_nil
       end
 
       it 'returns the last created token' do
         FactoryGirl.create :access_token, default_attributes.merge(created_at: 1.day.ago)
-        token      = FactoryGirl.create :access_token, default_attributes
+        token = FactoryGirl.create :access_token, default_attributes
         last_token = AccessToken.matching_token_for(application, resource_owner_id, scopes)
         expect(last_token).to eq(token)
       end
 
       it 'returns as_json hash' do
-        token      = FactoryGirl.create :access_token, default_attributes
+        token = FactoryGirl.create :access_token, default_attributes
         token_hash = {
-          resource_owner_id:  token.resource_owner_id,
-          scopes:             token.scopes,
+          resource_owner_id: token.resource_owner_id,
+          scopes: token.scopes,
           expires_in_seconds: token.expires_in_seconds,
-          application:        { uid: token.application.uid },
-          created_at:         token.created_at.to_i,
+          application: { uid: token.application.uid },
+          created_at: token.created_at.to_i
         }
         expect(token.as_json).to eq token_hash
       end

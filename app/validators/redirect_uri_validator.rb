@@ -5,6 +5,7 @@ class RedirectUriValidator < ActiveModel::EachValidator
     Cyberbrain.configuration.native_redirect_uri
   end
 
+  # rubocop:disable Metrics/PerceivedComplexity
   def validate_each(record, attribute, value)
     if value.blank?
       record.errors.add(attribute, :blank)

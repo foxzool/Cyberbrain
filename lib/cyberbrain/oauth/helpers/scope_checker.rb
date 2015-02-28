@@ -11,7 +11,7 @@ module Cyberbrain
 
           scope_str.present? &&
             scope_str !~ /[\n|\r|\t]/ &&
-            valid_scopes.has_scopes?(OAuth::Scopes.from_string(scope_str))
+            valid_scopes.scopes?(OAuth::Scopes.from_string(scope_str))
         end
       end
     end

@@ -9,12 +9,14 @@ describe Cyberbrain::API::OAuth2Endpoint do
 
   let(:application) { FactoryGirl.create :application }
   let(:account) { FactoryGirl.create :account, password: '123' }
-  let(:access_token) { FactoryGirl.create :access_token,
-                                          application: application,
-                                          resource_owner_id: account.id,
-                                          use_refresh_token: true }
+  let(:access_token) do
+    FactoryGirl.create :access_token,
+                       application: application,
+                       resource_owner_id: account.id,
+                       use_refresh_token: true
+  end
 
-  # TODO check json response
+  # TODO: check json response
   describe 'POST /api/v1/oauth2/token' do
     let(:grant) { FactoryGirl.create :access_grant }
     context 'grant_type is authorization_code' do

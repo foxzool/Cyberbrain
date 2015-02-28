@@ -26,17 +26,18 @@ module Cyberbrain
       end
 
       def column_names_with_table
-        self.column_names.map { |c| "#{table_name}.#{c}" }
+        column_names.map { |c| "#{table_name}.#{c}" }
       end
 
       def authorized_for(resource_owner)
-        joins(:authorized_applications).
-          where(AccessToken.table_name => { resource_owner_id: resource_owner.id, revoked_at: nil }).
-          group(column_names_with_table.join(',')).order('id')
+        joins(:authorized_applications)
+          .where(AccessToken.table_name => { resource_owner_id: resource_owner.id, revoked_at: nil })
+          .group(column_names_with_table.join(',')).order('id')
       end
     end
 
     private
+
     def generate_uid
       self.uid ||= UniqueToken.generate
     end
